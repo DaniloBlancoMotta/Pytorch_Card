@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ML Specific
+data/01-raw/*
+!data/01-raw/.gitkeep
+data/02-preprocessed/*
+data/03-features/*
+data/04-predictions/*
+model_checkpoint.pth
+*.pth
+*.pkl
+*.h5
+
+# Project specific
+code_cells.json
+code_content.json
+extracted_code.py
+temp_nb.py
+model_journey.png
