@@ -2,20 +2,37 @@
 
 [English] | [Português]
 
-This project implements a Deep Learning model to classify playing cards into their respective categories, following Senior ML Engineering standards.
+This project implements a Deep Learning model to classify playing cards into their respective categories, following ML Engineering standards.
 Este projeto implementa um modelo de Deep Learning para classificar cartas de baralho em suas respectivas categorias, seguindo os padrões de Engenharia de ML Sênior.
 
 ## Model Journey / Jornada do Modelo
 ![Card Classification Journey](model_journey.png)
 
-### Technical Pipeline / Pipeline Técnico
+## Internal Recognition Logic / Lógica Interna de Reconhecimento
+![Card Recognition Logic](card_logic.png)
+
+### Elaborate Technical Pipeline / Pipeline Técnico Detalhado
 ```mermaid
-graph LR
-    A[Data: Kaggle Dataset] --> B[Preprocessing: Resize/Normalize]
-    B --> C[Training: ResNet18 Transfer Learning]
-    C --> D[Checkpoint: model_checkpoint.pth]
-    D --> E[Web Service: FastAPI]
-    E --> F[Container: Docker/Kubernetes]
+graph TD
+    subgraph Data_Layer [Data Management Layer]
+        A[Kaggle Dataset Archive] -->|Extraction| B[data/01-raw]
+        B -->|Validation| C{Data Quality Check}
+        C -->|Passed| D[data/02-preprocessed]
+        C -->|Refused| B
+    end
+
+    subgraph Training_Orchestration [Modular Training Pipeline]
+        D -->|Feature Extraction| E[ResNet18 / EfficientNet]
+        E -->|Transfer Learning| F[Model Training Loop]
+        F -->|Hyperparameter Tuning| G[Performance Validation]
+        G -->|Checkpointing| H[model_checkpoint.pth]
+    end
+
+    subgraph Production_Serving [Inference & Serving]
+        H -->|Loading| I[FastAPI Internal Pipeline]
+        I -->|Real-time Prediction| J[Web Interface / Mobile App]
+        J -->|Feedback Loop| K[data/04-predictions]
+    end
 ```
 
 ## Technologies Used / Tecnologias Utilizadas
