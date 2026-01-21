@@ -11,7 +11,25 @@ Este projeto implementa um modelo de Deep Learning para classificar cartas de ba
 ## Internal Recognition Logic / Lógica Interna de Reconhecimento
 ![Card Recognition Logic](card_logic.png)
 
-### Elaborate Technical Pipeline / Pipeline Técnico Detalhado
+## Model Performance Analysis / Análise de Performance do Modelo
+
+### 1. Training Dynamics / Dinâmica de Treino
+The model shows efficient convergence using Transfer Learning:
+O modelo apresenta convergência eficiente utilizando Transfer Learning:
+
+- **Phase 1 (Epoch 1-3)**: Rapid loss reduction from `2.15` to `0.81` (Train) and `0.81` to `0.48` (Val).
+- **Generalization**: No signs of overfitting; validation loss consistently follows the training trend.
+
+### 2. Technical Findings / Parecer Técnico
+- **High Confidence Classes**: Typical 100% accuracy on high-rank cards (10, Face cards).
+- **Critical Bottlenecks**: Significant precision drop in low-value cards (**2 of Diamonds: 40%**, **2 of Spades: 60%**).
+- **Diagnosis**: Visual confusion between small suit symbols at lower ranks.
+
+### 3. Recommendations / Recomendações
+- Implement selective fine-tuning of the last ResNet block.
+- Use ClassWeights to address performance drops in critical low-value cards.
+
+## Technical Pipeline / Pipeline Técnico Detalhado
 ```mermaid
 graph TD
     subgraph Data_Layer [Data Management Layer]
